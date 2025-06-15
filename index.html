@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Price Simulation using GBM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f2f2f2;
+      color: #333;
+    }
+    header {
+      background-color: #1565c0;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 10px;
+      display: block;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    footer {
+      background-color: #1565c0;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    a {
+      color: #1565c0;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📈 Stock Price Simulation using GBM</h1>
+    <p>A Mini Project on Random Variables & Stochastic Processes</p>
+  </header>
+
+  <section>
+    <h2>Overview</h2>
+    <p>This project simulates stock price behavior using the Geometric Brownian Motion (GBM) model — a stochastic process widely used in financial mathematics to describe price evolution over time.</p>
+  </section>
+
+  <section>
+    <h2>Simulation Result</h2>
+    <img src="simulation.png" alt="Simulated Stock Price">
+  </section>
+
+  <section>
+    <h2>Python Code</h2>
+    <code>
+import numpy as np
+import matplotlib.pyplot as plt
+
+def simulate_gbm(S0, mu, sigma, T, dt):
+    N = int(T/dt)
+    t = np.linspace(0, T, N)
+    W = np.random.standard_normal(size=N)
+    W = np.cumsum(W) * np.sqrt(dt)
+    X = (mu - 0.5 * sigma**2) * t + sigma * W
+    S = S0 * np.exp(X)
+    return t, S
+
+# Parameters
+S0 = 100
+mu = 0.1
+sigma = 0.2
+T = 1
+dt = 0.01
+
+t, S = simulate_gbm(S0, mu, sigma, T, dt)
+
+plt.plot(t, S)
+plt.title("Stock Price Simulation using GBM")
+plt.xlabel("Time (Years)")
+plt.ylabel("Stock Price")
+plt.grid(True)
+plt.savefig("simulation.png")
+plt.show()
+    </code>
+  </section>
+
+  <section>
+    <h2>Downloads</h2>
+    <ul>
+      <li><a href="simulation.py" download>📥 Download Python Code</a></li>
+      <li><a href="project-report.pdf" download>📥 Download Project Report (PDF)</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 | Created for Educational Purpose using GitHub Pages</p>
+  </footer>
+</body>
+</html>
